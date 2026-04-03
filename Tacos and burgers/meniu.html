@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meniu · Tacos & Burgers Galați</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #C8220A; --red-light: #E8330F;
+  --gold: #F5C842; --gold-dark: #C89A10;
+  --cream: #FDF6EC; --dark: #120800; --dark2: #1E0E02;
+  --text: #2A1200; --text-muted: #7A5A40; --white: #fff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; ; }
+
+
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-48px); transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1); }
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-right { opacity: 0; transform: translateX(48px); transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1); }
+.reveal-right.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+#progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold)); z-index: 9999; width: 0%; transition: width 0.1s; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(18,8,0,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(245,200,66,0.15); }
+.nav-logo { font-family: 'Dancing Script', cursive; font-size: 26px; color: var(--gold); text-decoration: none; opacity: 0; animation: fadeDown 0.7s 0.2s ease forwards; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeDown 0.7s 0.35s ease forwards; }
+.nav-back { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-back:hover { color: var(--gold); }
+.nav-cta { background: var(--red); color: #fff; padding: 8px 18px; border-radius: 4px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--red-light); }
+
+/* CATEGORY FILTER NAV */
+.filter-nav { position: fixed; top: 64px; left: 0; right: 0; z-index: 190; background: rgba(18,8,0,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,200,66,0.1); padding: 0 2.5rem; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.filter-nav::-webkit-scrollbar { display: none; }
+.filter-btn { flex-shrink: 0; padding: 14px 20px; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; ; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+.filter-btn:hover { color: rgba(255,255,255,0.85); }
+.filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* HERO */
+.hero { min-height: 42vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--dark); overflow: hidden; padding-top: 120px; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,34,10,0.12) 0%, transparent 70%), linear-gradient(160deg, #120800 0%, #1E0E02 50%, #0A0400 100%); }
+.hero-content { position: relative; z-index: 2; padding: 2rem; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.3); padding: 5px 16px; border-radius: 100px; font-size: 12px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.9s 0.3s ease forwards; }
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 62px); font-weight: 700; color: var(--white); line-height: 1.1; opacity: 0; animation: fadeUp 0.9s 0.5s ease forwards; }
+.hero-content h1 em { font-style: italic; color: var(--gold); }
+
+/* SECTION WRAPPER */
+.menu-section { padding: 5rem 0; }
+.menu-section.dark { background: var(--dark2); }
+.menu-section.cream { background: var(--cream); }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 5rem; }
+
+.section-header { margin-bottom: 3rem; }
+.section-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+.section-tag::before { content: ''; display: block; width: 24px; height: 2px; }
+.menu-section.dark .section-tag { color: var(--gold); }
+.menu-section.dark .section-tag::before { background: var(--gold); }
+.menu-section.cream .section-tag { color: var(--red); }
+.menu-section.cream .section-tag::before { background: var(--red); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; line-height: 1.1; }
+.menu-section.dark .section-title { color: var(--white); }
+.menu-section.cream .section-title em { font-style: italic; color: var(--red); }
+.menu-section.dark .section-title em { font-style: italic; color: var(--gold); }
+.menu-section.cream .section-title { color: var(--text); }
+
+/* FEATURED LAYOUT — bestseller left, rest right */
+.featured-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.featured-layout.reverse { direction: rtl; }
+.featured-layout.reverse > * { direction: ltr; }
+
+/* BESTSELLER CARD */
+.bestseller-card { position: relative; border-radius: 16px; overflow: hidden; }
+.bestseller-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(.22,1,.36,1); }
+.bestseller-card:hover .bestseller-img { transform: scale(1.04); }
+.bestseller-badge { position: absolute; top: 16px; left: 16px; background: var(--gold); color: var(--dark); font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+.bestseller-info { padding: 1.5rem 0 0; }
+.bestseller-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 0.5rem; }
+.menu-section.dark .bestseller-name { color: var(--white); }
+.menu-section.cream .bestseller-name { color: var(--text); }
+.bestseller-desc { font-size: 14px; line-height: 1.65; margin-bottom: 1rem; font-weight: 300; }
+.menu-section.dark .bestseller-desc { color: rgba(255,255,255,0.55); }
+.menu-section.cream .bestseller-desc { color: var(--text-muted); }
+.bestseller-price { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--red); }
+.bestseller-price span { font-size: 16px; font-weight: 400; color: var(--text-muted); font-family: 'DM Sans', sans-serif; margin-left: 4px; }
+
+/* REST OF ITEMS */
+.items-list { display: flex; flex-direction: column; gap: 0; }
+.items-list-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid; }
+.menu-section.dark .items-list-title { color: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.08); }
+.menu-section.cream .items-list-title { color: var(--text-muted); border-color: rgba(0,0,0,0.08); }
+
+.menu-item { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 14px 0; border-bottom: 1px solid; transition: all 0.2s; }
+.menu-section.dark .menu-item { border-color: rgba(255,255,255,0.06); }
+.menu-section.cream .menu-item { border-color: rgba(0,0,0,0.06); }
+.menu-item:last-child { border-bottom: none; }
+.menu-item:hover { padding-left: 6px; }
+.item-left { flex: 1; }
+.item-name { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+.menu-section.dark .item-name { color: rgba(255,255,255,0.85); }
+.menu-section.cream .item-name { color: var(--text); }
+.item-desc { font-size: 12px; font-weight: 300; line-height: 1.5; }
+.menu-section.dark .item-desc { color: rgba(255,255,255,0.35); }
+.menu-section.cream .item-desc { color: var(--text-muted); }
+.item-price { font-size: 16px; font-weight: 500; color: var(--red); white-space: nowrap; flex-shrink: 0; }
+
+/* NOTE CARD */
+.note-card { margin-top: 1.5rem; padding: 12px 16px; border-radius: 8px; font-size: 13px; font-style: italic; }
+.menu-section.dark .note-card { background: rgba(245,200,66,0.07); border: 1px solid rgba(245,200,66,0.15); color: rgba(255,255,255,0.45); }
+.menu-section.cream .note-card { background: rgba(200,34,10,0.05); border: 1px solid rgba(200,34,10,0.12); color: var(--text-muted); }
+
+/* NO PHOTO SECTIONS */
+.simple-section { padding: 5rem 0; }
+.simple-section.dark { background: var(--dark); }
+.simple-section.cream { background: var(--cream); }
+.simple-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 2.5rem; }
+.simple-card { padding: 1.5rem; border-radius: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; transition: all 0.25s; }
+.simple-section.dark .simple-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); }
+.simple-section.dark .simple-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(245,200,66,0.2); transform: translateY(-3px); }
+.simple-section.cream .simple-card { background: #fff; border: 1px solid rgba(0,0,0,0.07); }
+.simple-section.cream .simple-card:hover { border-color: rgba(200,34,10,0.25); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(200,34,10,0.07); }
+.simple-card-left { flex: 1; }
+.simple-card-name { font-size: 15px; font-weight: 500; margin-bottom: 5px; }
+.simple-section.dark .simple-card-name { color: var(--white); }
+.simple-section.cream .simple-card-name { color: var(--text); }
+.simple-card-desc { font-size: 12px; line-height: 1.6; font-weight: 300; }
+.simple-section.dark .simple-card-desc { color: rgba(255,255,255,0.4); }
+.simple-section.cream .simple-card-desc { color: var(--text-muted); }
+.simple-card-price { font-size: 18px; font-weight: 500; color: var(--red); white-space: nowrap; }
+.simple-section-title { font-family: 'Playfair Display', serif; }
+.simple-section.dark .simple-section-title { color: var(--white); }
+.simple-section.cream .simple-section-title { color: var(--text); }
+
+/* DESERT CARDS — equal with photo */
+.desert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 2.5rem; }
+.desert-card { border-radius: 16px; overflow: hidden; position: relative; background: var(--dark); }
+.desert-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(.22,1,.36,1); }
+.desert-card:hover img { transform: scale(1.05); }
+.desert-card-body { padding: 1.25rem; }
+.desert-card-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.desert-card-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 10px; font-weight: 300; }
+.desert-card-price { font-size: 22px; font-weight: 700; color: var(--gold); }
+
+/* WHATSAPP */
+.wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 9000; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.25s; animation: waPulse 2.5s ease infinite; }
+.wa-float:hover { transform: scale(1.12); }
+.wa-float svg { width: 30px; height: 30px; }
+
+/* FOOTER */
+footer { background: var(--dark2); padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(245,200,66,0.1); }
+.footer-logo { font-family: 'Dancing Script', cursive; font-size: 20px; color: var(--gold); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); } }
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+  nav { padding: 0 1.5rem; }
+  .filter-nav { padding: 0 1rem; }
+  .section-inner { padding: 0 1.5rem; }
+  .featured-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .featured-layout.reverse { direction: ltr; }
+  .desert-grid { grid-template-columns: 1fr; }
+  .simple-grid { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Tacos & Burgers</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Site principal</a>
+    <a href="tel:0770235943" class="nav-cta">Sună acum</a>
+  </div>
+</nav>
+
+<!-- FILTER NAV -->
+<div class="filter-nav" id="filter-nav">
+  <button class="filter-btn active" onclick="goToSection('burgeri')">Burgeri</button>
+  <button class="filter-btn" onclick="goToSection('tacos')">Tacos</button>
+  <button class="filter-btn" onclick="goToSection('burritos')">Burritos</button>
+  <button class="filter-btn" onclick="goToSection('quesadillas')">Quesadillas</button>
+  <button class="filter-btn" onclick="goToSection('nachos')">Nachos</button>
+  <button class="filter-btn" onclick="goToSection('fastfood')">Fast Food</button>
+  <button class="filter-btn" onclick="goToSection('recomandari')">Recomandările bucătarului</button>
+  <button class="filter-btn" onclick="goToSection('platouri')">Platouri mexicane</button>
+  <button class="filter-btn" onclick="goToSection('deserturi')">Deserturi</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Enjoy new taste</div>
+    <h1>Meniul <em>nostru</em></h1>
+  </div>
+</section>
+
+
+<!-- ═══ BURGERI ═══ -->
+<section class="menu-section cream" id="burgeri">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Burgeri</div>
+      <h2 class="section-title">Burgerii <em>noștri</em></h2>
+    </div>
+    <div class="featured-layout">
+      <div class="bestseller-card reveal-left">
+        <img src="1775154176831_image.png" alt="Smoked Jack Daddy" class="bestseller-img">
+        <div class="bestseller-badge">⭐ Best Seller</div>
+        <div class="bestseller-info">
+          <div class="bestseller-name">Smoked Jack Daddy cu extra cheddar</div>
+          <div class="bestseller-desc">Chiflă proaspătă, burger de vită, roșii, 3 felii de castraveți în oțet, rucolă, ceapă caramelizată, ceapă roșie, bacon grill, sosul casei, cartofi prăjiți 100g, 2 inele de ceapă, sos cheddar.</div>
+          <div class="bestseller-price">47 lei</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="items-list-title">Toți burgerii</div>
+        <div class="items-list">
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Burger</div><div class="item-desc">Chiflă, burger pui, cheddar, roșii, castraveți, rucolă, ceapă caramelizată, ceapă roșie, bacon, sos casei, cartofi, 2 inele ceapă</div></div><div class="item-price">43 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Jalapeño Burger</div><div class="item-desc">Chiflă, burger pui cu jalapeño, roșii, castraveți, rucolă, bacon, ceapă caramelizată, ceapă roșie, sos casei, cartofi, 2 inele ceapă</div></div><div class="item-price">42 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Burger Jack Daddy</div><div class="item-desc">Chiflă, burger vită, cheddar, roșii, castraveți, rucolă, ceapă caramelizată, ceapă roșie, bacon, sos casei, cartofi, 2 inele ceapă</div></div><div class="item-price">42 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Triple Bacon Burger</div><div class="item-desc">Chiflă, burger vită, cheddar, roșii, castraveți, rucolă, ceapă caramelizată, ceapă roșie, 3 fâșii bacon, sos casei, cartofi, 2 inele ceapă</div></div><div class="item-price">45 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Dark Knight Burger</div><div class="item-desc">Chiflă neagră, burger vită 100g, 2x cheddar, roșii, castraveți, rucolă, ceapă caramelizată, ceapă roșie, 2x bacon, sos casei, cartofi, 2 inele ceapă</div></div><div class="item-price">47 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Double Smash Burger</div><div class="item-desc">Chiflă 80g, carne vită 100g x2, cheddar x2, ceapă roșie, castraveți murați, sos casei, cartofi 100g</div></div><div class="item-price">39 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Classic Smash Burger</div><div class="item-desc">Chiflă 100g, burger vită, cheddar, roșii, castraveți murați, ceapă roșie, sos casei, cartofi 100g</div></div><div class="item-price">33 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Onion Euphoria Burger</div><div class="item-desc">Chiflă 100g, burger vită 100g, cheddar, rucolă, ceapă roșie, ceapă caramelizată, sos BBQ, 2 inele ceapă</div></div><div class="item-price">40 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Hot Smash Burger</div><div class="item-desc">Chiflă 80g, burger vită, cheddar, roșii, castraveți, ceapă roșie, jalapeño, sos casei, cartofi 100g</div></div><div class="item-price">34 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Black Cheese Burger</div><div class="item-desc">Chiflă neagră, burger vită, cheddar, roșii, castraveți, rucolă, ceapă roșie, ceapă caramelizată, sos casei, cartofi, inele ceapă</div></div><div class="item-price">47 lei</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TACOS ═══ -->
+<section class="menu-section dark" id="tacos">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Tacos</div>
+      <h2 class="section-title">Tacos <em>autentici</em></h2>
+    </div>
+    <div class="featured-layout reverse">
+      <div class="bestseller-card reveal-right">
+        <img src="1775154417420_image.png" alt="Beef Fajitas Tacos" class="bestseller-img">
+        <div class="bestseller-badge">⭐ Best Seller</div>
+        <div class="bestseller-info">
+          <div class="bestseller-name">Beef Fajitas Tacos</div>
+          <div class="bestseller-desc">3 tacos crunch cu carne tocată de vită, rucolă, legume fajitas, mix brânzeturi, salată pico de gallo, sos salsa, cartofi prăjiți și nachos.</div>
+          <div class="bestseller-price">38 lei</div>
+        </div>
+      </div>
+      <div class="reveal-left">
+        <div class="items-list-title">Toți tacosii</div>
+        <div class="items-list">
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Soft Tacos</div><div class="item-desc">3 tacos soft, carne pui, rucolă, mix brânzeturi, pico de gallo, sos salsa, cartofi, nachos</div></div><div class="item-price">30 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Crunch Tacos</div><div class="item-desc">3 tacos crunch, carne pui, rucolă, mix brânzeturi, pico de gallo, sos salsa, cartofi, nachos</div></div><div class="item-price">33 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Beef Soft Tacos</div><div class="item-desc">3 tacos soft, carne vită, rucolă, mix brânzeturi, pico de gallo, sos salsa, cartofi, nachos</div></div><div class="item-price">35 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Beef Crunch Tacos</div><div class="item-desc">3 tacos crunch, carne vită, rucolă, mix brânzeturi, pico de gallo, sos salsa, cartofi, nachos</div></div><div class="item-price">37 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Fajitas Tacos</div><div class="item-desc">3 tacos crunch, piept pui gătit, mix brânzeturi, legume fajitas, pico de gallo, sos salsa, cartofi, nachos</div></div><div class="item-price">35 lei</div></div>
+        </div>
+        <div class="note-card">* La cerere avem și opțiunea de tacos vegan soft sau crunch la prețul de 35 lei</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BURRITOS ═══ -->
+<section class="menu-section cream" id="burritos">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Burritos</div>
+      <h2 class="section-title">Burrito <em>mexican</em></h2>
+    </div>
+    <div class="featured-layout">
+      <div class="bestseller-card reveal-left">
+        <img src="1775154616102_image.png" alt="Mexican Burrito" class="bestseller-img">
+        <div class="bestseller-badge">⭐ Best Seller</div>
+        <div class="bestseller-info">
+          <div class="bestseller-name">Mexican Burrito</div>
+          <div class="bestseller-desc">Tortilla, carne tocată de pui, orez mexican, fasole roșie, porumb, jalapeño, sos picant, pico de gallo, cartofi prăjiți sau nachos, sos salsa.</div>
+          <div class="bestseller-price">37 lei</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="items-list-title">Toți burritoșii</div>
+        <div class="items-list">
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Burrito</div><div class="item-desc">Tortilla, carne pui, orez mexican, fasole roșie, porumb, pico de gallo, cartofi, nachos, sos salsa</div></div><div class="item-price">32 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Crispy Burrito</div><div class="item-desc">Tortilla, șnițel de pui, orez mexican, fasole roșie, porumb, pico de gallo, cartofi, nachos, sos salsa</div></div><div class="item-price">35 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Fajitas Burrito</div><div class="item-desc">Tortilla, piept pui gătit, orez mexican, fasole roșie, porumb, legume fajitas, pico de gallo, cartofi, nachos, sos salsa</div></div><div class="item-price">35 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Beef Fajitas Burrito</div><div class="item-desc">Tortilla, carne vită, orez mexican, fasole, porumb, mix brânzeturi, legume fajitas, pico de gallo, cartofi, nachos, sos salsa</div></div><div class="item-price">37 lei</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUESADILLAS ═══ -->
+<section class="menu-section dark" id="quesadillas">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Quesadillas</div>
+      <h2 class="section-title">Quesadillas <em>crocante</em></h2>
+    </div>
+    <div class="featured-layout reverse">
+      <div class="bestseller-card reveal-right">
+        <img src="1775202274210_image.png" alt="Chicken Fajitas Quesadillas" class="bestseller-img">
+        <div class="bestseller-badge">⭐ Best Seller</div>
+        <div class="bestseller-info">
+          <div class="bestseller-name">Chicken Fajitas Quesadillas</div>
+          <div class="bestseller-desc">4 fâșii de piept de pui gătit, legume fajitas, mix de brânzeturi, sos salsa, cartofi prăjiți și nachos.</div>
+          <div class="bestseller-price">37 lei</div>
+        </div>
+      </div>
+      <div class="reveal-left">
+        <div class="items-list-title">Toate quesadillele</div>
+        <div class="items-list">
+          <div class="menu-item"><div class="item-left"><div class="item-name">Chicken Quesadillas</div><div class="item-desc">4 fâșii, carne pui, ceapă caramelizată, mix brânzeturi, cartofi, nachos, sos salsa</div></div><div class="item-price">35 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Beef Quesadillas</div><div class="item-desc">4 fâșii, carne vită, ceapă caramelizată, mix brânzeturi, sos salsa, cartofi, nachos</div></div><div class="item-price">37 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Beef Fajitas Quesadillas</div><div class="item-desc">4 fâșii, carne vită, legume fajitas, mix brânzeturi, sos salsa, cartofi, nachos</div></div><div class="item-price">38 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Quesadillas cu brânzeturi</div><div class="item-desc">4 fâșii, mozzarella, cheddar, ceapă caramelizată, sos salsa, cartofi, nachos</div></div><div class="item-price">31 lei</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NACHOS ═══ -->
+<section class="menu-section cream" id="nachos">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Nachos</div>
+      <h2 class="section-title">Nachos <em>crispy</em></h2>
+    </div>
+    <div class="featured-layout">
+      <div class="bestseller-card reveal-left">
+        <img src="1775154707289_image.png" alt="Chilli Cheese Nachos" class="bestseller-img">
+        <div class="bestseller-badge">⭐ Best Seller</div>
+        <div class="bestseller-info">
+          <div class="bestseller-name">Chilli Cheese Nachos</div>
+          <div class="bestseller-desc">Nachos 150g, carne tocată vită 100g, mix de brânzeturi, sos cheese dip.</div>
+          <div class="bestseller-price">30 lei</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="items-list-title">Toți nachosii</div>
+        <div class="items-list">
+          <div class="menu-item"><div class="item-left"><div class="item-name">Classic Nachos</div><div class="item-desc">Nachos 150g, sos salsa, sos cheese dip</div></div><div class="item-price">20 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Jalapeño Nachos</div><div class="item-desc">Nachos 150g, maioneză, jalapeño</div></div><div class="item-price">20 lei</div></div>
+          <div class="menu-item"><div class="item-left"><div class="item-name">Cheese Chicken Nachos</div><div class="item-desc">Nachos, carne tocată pui, mix brânzeturi, sos cheese dip</div></div><div class="item-price">27 lei</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAST FOOD ═══ -->
+<section class="simple-section cream" id="fastfood">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag" style="color:var(--red)"><span style="background:var(--red);display:inline-block;width:24px;height:2px;margin-right:8px"></span>Fast Food</div>
+      <h2 class="simple-section-title section-title" style="font-size:clamp(28px,3.5vw,48px);color:var(--text)">Fast <em style="color:var(--red);font-style:italic">Food</em></h2>
+    </div>
+    <div class="simple-grid">
+      <div class="simple-card reveal reveal-delay-1"><div class="simple-card-left"><div class="simple-card-name">Meniu Aripi Picante</div><div class="simple-card-desc">5 aripi picante, cartofi prăjiți 150g, sos sweet chilli 50g</div></div><div class="simple-card-price">35 lei</div></div>
+      <div class="simple-card reveal reveal-delay-2"><div class="simple-card-left"><div class="simple-card-name">Meniu Aripi Nepicante</div><div class="simple-card-desc">5 aripi nepicante, cartofi prăjiți 150g, sos sweet chilli 50g</div></div><div class="simple-card-price">34 lei</div></div>
+      <div class="simple-card reveal reveal-delay-3"><div class="simple-card-left"><div class="simple-card-name">Meniu Fingers</div><div class="simple-card-desc">Fâșii de pui crocante 200g, cartofi prăjiți 150g, sos sweet chilli 50g</div></div><div class="simple-card-price">33 lei</div></div>
+      <div class="simple-card reveal reveal-delay-1"><div class="simple-card-left"><div class="simple-card-name">Crispy Strips</div><div class="simple-card-desc">Strips de pui 200g, cartofi prăjiți 150g, sos calypso 50g</div></div><div class="simple-card-price">33 lei</div></div>
+      <div class="simple-card reveal reveal-delay-2"><div class="simple-card-left"><div class="simple-card-name">Snițel în crustă de panko</div><div class="simple-card-desc">Snițel de pui 200g, cartofi prăjiți 150g, sos calypso 50g</div></div><div class="simple-card-price">29 lei</div></div>
+      <div class="simple-card reveal reveal-delay-3"><div class="simple-card-left"><div class="simple-card-name">Cartofi cu mixt de brânzeturi și peperoncino</div><div class="simple-card-desc">Cartofi prăjiți 150g, mix brânzeturi 50g, peperoncino</div></div><div class="simple-card-price">14 lei</div></div>
+      <div class="simple-card reveal reveal-delay-1"><div class="simple-card-left"><div class="simple-card-name">Cartofi cu bacon și mozzarella</div><div class="simple-card-desc">Cartofi prăjiți 150g, bacon, mozzarella 50g</div></div><div class="simple-card-price">15 lei</div></div>
+      <div class="simple-card reveal reveal-delay-2"><div class="simple-card-left"><div class="simple-card-name">Cartofi cu cheddar și ceapă crispy</div><div class="simple-card-desc">Cartofi prăjiți 150g, cheddar 50g, ceapă crispy</div></div><div class="simple-card-price">16 lei</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECOMANDĂRI BUCĂTAR ═══ -->
+<section class="simple-section cream" id="recomandari">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag" style="color:var(--red)"><span style="background:var(--red);display:inline-block;width:24px;height:2px;margin-right:8px"></span>Recomandările bucătarului</div>
+      <h2 class="simple-section-title section-title" style="font-size:clamp(28px,3.5vw,48px);color:var(--text)">Alegerile <em style="color:var(--red);font-style:italic">noastre</em></h2>
+    </div>
+    <div class="simple-grid">
+      <div class="simple-card reveal reveal-delay-1"><div class="simple-card-left"><div class="simple-card-name">Tigaie Mexicană de Pui</div><div class="simple-card-desc">Piept de pui gătit, legume mexicane gratinate la cuptor, tortilla, sos salsa</div></div><div class="simple-card-price">40 lei</div></div>
+      <div class="simple-card reveal reveal-delay-2"><div class="simple-card-left"><div class="simple-card-name">Godzilla Beef Burger</div><div class="simple-card-desc">Chiflă proaspătă, doi burgeri vită cu cheddar, rucolă, roșii gratinate cu mozzarella, castraveți, ceapă caramelizată, ceapă roșie, bacon, sos casei, inele ceapă</div></div><div class="simple-card-price">45 lei</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLATOURI MEXICANE ═══ -->
+<section class="simple-section dark" id="platouri">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag" style="color:var(--gold)"><span style="background:var(--gold);display:inline-block;width:24px;height:2px;margin-right:8px"></span>Platouri mexicane</div>
+      <h2 class="simple-section-title section-title" style="font-size:clamp(28px,3.5vw,48px)">Platouri <em style="color:var(--gold);font-style:italic">mexicane</em></h2>
+    </div>
+    <div class="featured-layout" style="margin-top:2rem">
+      <div class="bestseller-card reveal-left">
+        <img src="1775202201461_image.png" alt="Platou Mexican Mixt" class="bestseller-img">
+      </div>
+      <div class="reveal-right">
+        <div class="items-list">
+          <div class="menu-item" style="border-color:rgba(255,255,255,0.06)">
+            <div class="item-left">
+              <div class="item-name" style="color:rgba(255,255,255,0.85)">Platou Mexican Mixt (2-4 persoane)</div>
+              <div class="item-desc" style="color:rgba(255,255,255,0.35)">4 tacos, 4 fâșii quesadilla, 4 mini buritto, 4 mini chicken burgers, cartofi prăjiți, nachos, sos salsa, sos guacamole, sos cheese dip</div>
+            </div>
+            <div class="item-price">170 lei</div>
+          </div>
+          <div class="menu-item" style="border-color:rgba(255,255,255,0.06)">
+            <div class="item-left">
+              <div class="item-name" style="color:rgba(255,255,255,0.85)">Platou Mexican Mixt (6-8 persoane)</div>
+              <div class="item-desc" style="color:rgba(255,255,255,0.35)">8 tacos, 8 fâșii quesadilla, 8 mini buritto, 8 mini chicken burgers, cartofi prăjiți, nachos, sos salsa, sos guacamole, sos cheese dip</div>
+            </div>
+            <div class="item-price">350 lei</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DESERTURI ═══ -->
+<section class="simple-section dark" id="deserturi">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag" style="color:var(--gold)"><span style="background:var(--gold);display:inline-block;width:24px;height:2px;margin-right:8px"></span>Deserturi</div>
+      <h2 class="simple-section-title section-title" style="font-size:clamp(28px,3.5vw,48px)">Deserturi <em style="color:var(--gold)">dulci</em></h2>
+    </div>
+    <div class="desert-grid">
+      <div class="desert-card reveal reveal-delay-1">
+        <img src="1775154745703_image.png" alt="Churros">
+        <div class="desert-card-body">
+          <div class="desert-card-name">Churros</div>
+          <div class="desert-card-desc">7 churros cu finetti și topping de caramel.</div>
+          <div class="desert-card-price">29 lei</div>
+        </div>
+      </div>
+      <div class="desert-card reveal reveal-delay-2">
+        <img src="1775154782842_image.png" alt="Tortilla cu Finetti și Oreo">
+        <div class="desert-card-body">
+          <div class="desert-card-name">Tortilla cu Finetti și Oreo</div>
+          <div class="desert-card-desc">Tortilla delicioasă cu finetti, fulgi de Oreo și topping de caramel.</div>
+          <div class="desert-card-price">25 lei</div>
+        </div>
+      </div>
+    </div>
+    <div class="simple-grid" style="margin-top:16px">
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/40770235943" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<footer>
+  <div class="footer-logo">Tacos & Burgers</div>
+  <div class="footer-copy">© 2026 Tacos & Burgers Galați. Toate drepturile rezervate.</div>
+</footer>
+
+<script>
+// PROGRESS BAR
+const pb=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';});
+
+// SCROLL TO
+function goToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = 64 + 44;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// ACTIVE FILTER
+const sections = ['burgeri','tacos','burritos','quesadillas','nachos','fastfood','recomandari','platouri','deserturi'];
+const btns = document.querySelectorAll('.filter-btn');
+window.addEventListener('scroll', () => {
+  const offset = 120;
+  let active = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= offset) active = i;
+  });
+  btns.forEach((b,i) => b.classList.toggle('active', i === active));
+});
+
+// REVEAL
+const ro = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bars for your Events · Tacos & Burgers Galați</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #C8220A; --red-light: #E8330F;
+  --gold: #F5C842; --gold-dark: #C89A10;
+  --cream: #FDF6EC; --dark: #120800; --dark2: #1E0E02;
+  --text: #2A1200; --text-muted: #7A5A40; --white: #fff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; ; }
+
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+#progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold)); z-index: 9999; width: 0%; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(18,8,0,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(245,200,66,0.15); }
+.nav-logo { font-family: 'Dancing Script', cursive; font-size: 26px; color: var(--gold); text-decoration: none; }
+.nav-back { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+.nav-back:hover { color: var(--gold); }
+.nav-cta { background: var(--red); color: #fff; padding: 8px 18px; border-radius: 4px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--red-light); }
+
+/* HERO */
+.hero { min-height: 55vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--dark); overflow: hidden; padding-top: 64px; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,34,10,0.15) 0%, transparent 70%), linear-gradient(160deg, #120800 0%, #1E0E02 50%, #0A0400 100%); }
+.hero-img { position: absolute; inset: 0; background: url('1775152492232_image.png') center/cover no-repeat; opacity: 0.18; mix-blend-mode: luminosity; }
+.hero-content { position: relative; z-index: 2; padding: 2rem; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.3); padding: 5px 16px; border-radius: 100px; font-size: 12px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.9s 0.3s ease forwards; }
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 68px); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.9s 0.5s ease forwards; }
+.hero-content h1 em { font-style: italic; color: var(--gold); }
+.hero-content p { font-size: 17px; color: rgba(255,255,255,0.55); font-weight: 300; max-width: 540px; margin: 0 auto; opacity: 0; animation: fadeUp 0.9s 0.7s ease forwards; }
+
+/* CTA STRIP */
+.cta-strip { background: var(--red); padding: 2.5rem 5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.cta-strip-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.5vw, 32px); color: var(--white); font-weight: 700; }
+.cta-strip-text h2 em { font-style: italic; color: var(--gold); }
+.cta-strip-text p { font-size: 15px; color: rgba(255,255,255,0.7); margin-top: 4px; font-weight: 300; }
+.call-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--white); color: var(--red); padding: 14px 32px; border-radius: 8px; font-size: 17px; font-weight: 500; text-decoration: none; transition: all 0.25s; font-family: 'DM Sans', sans-serif; animation: phonePulse 2.5s ease infinite; }
+.call-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.call-btn svg { width: 20px; height: 20px; }
+
+/* BAR SECTIONS */
+.bar-section { padding: 6rem 5rem; }
+.bar-section.cheese { background: var(--cream); }
+.bar-section.taco { background: var(--dark2); }
+
+.bar-inner { max-width: 1100px; margin: 0 auto; }
+.bar-header { margin-bottom: 3rem; }
+.bar-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.1; margin-bottom: 0.75rem; }
+.bar-section.cheese .bar-header h2 { color: var(--text); }
+.bar-section.cheese .bar-header h2 em { font-style: italic; color: var(--red); }
+.bar-section.taco .bar-header h2 { color: var(--white); }
+.bar-section.taco .bar-header h2 em { font-style: italic; color: var(--gold); }
+.bar-header p { font-size: 16px; line-height: 1.7; font-weight: 300; max-width: 600px; }
+.bar-section.cheese .bar-header p { color: var(--text-muted); }
+.bar-section.taco .bar-header p { color: rgba(255,255,255,0.55); }
+.section-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1rem; }
+.section-tag::before { content: ''; display: block; width: 24px; height: 2px; }
+.bar-section.cheese .section-tag { color: var(--red); }
+.bar-section.cheese .section-tag::before { background: var(--red); }
+.bar-section.taco .section-tag { color: var(--gold); }
+.bar-section.taco .section-tag::before { background: var(--gold); }
+
+/* PHOTO GRID */
+.bar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 700px; }
+.bar-grid-item { aspect-ratio: 1; border-radius: 12px; overflow: hidden; cursor: pointer; position: relative; }
+.bar-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.22,1,.36,1); display: block; }
+.bar-grid-item:hover img { transform: scale(1.06); }
+.bar-grid-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.3s; display: flex; align-items: center; justify-content: center; }
+.bar-grid-item:hover .bar-grid-overlay { background: rgba(0,0,0,0.2); }
+.bar-grid-overlay svg { opacity: 0; transform: scale(0.7); transition: all 0.3s; color: #fff; width: 32px; height: 32px; }
+.bar-grid-item:hover .bar-grid-overlay svg { opacity: 1; transform: scale(1); }
+
+.bar-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.bar-section.taco .bar-layout { direction: rtl; }
+.bar-section.taco .bar-layout > * { direction: ltr; }
+
+/* LIGHTBOX */
+.lb { position: fixed; inset: 0; background: rgba(0,0,0,0.94); z-index: 9990; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+.lb.open { opacity: 1; pointer-events: all; }
+.lb-inner { position: relative; max-width: 900px; width: 92vw; }
+.lb-img-wrap { border-radius: 12px; overflow: hidden; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
+.lb-img-wrap img { max-width: 100%; max-height: 80vh; object-fit: contain; display: block; transition: opacity 0.25s; }
+.lb-caption-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+.lb-caption { color: rgba(255,255,255,0.55); font-size: 13px; }
+.lb-counter { color: rgba(255,255,255,0.35); font-size: 12px; }
+.lb-close-btn { position: absolute; top: -44px; right: 0; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 26px; cursor: pointer; }
+.lb-close-btn:hover { color: #fff; }
+.lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 46px; height: 46px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.lb-arrow:hover { background: var(--red); border-color: var(--red); }
+.lb-arrow.left { left: -60px; }
+.lb-arrow.right { right: -60px; }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(245,200,66,0.1); }
+.footer-logo { font-family: 'Dancing Script', cursive; font-size: 20px; color: var(--gold); }
+.footer-back { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-back:hover { color: var(--gold); }
+
+/* WHATSAPP */
+.wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 9000; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.25s; animation: waPulse 2.5s ease infinite; }
+.wa-float:hover { transform: scale(1.12); }
+.wa-float svg { width: 30px; height: 30px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes phonePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
+@keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); } }
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+  nav { padding: 0 1.5rem; }
+  .cta-strip { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  .bar-section { padding: 4rem 1.5rem; }
+  .bar-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .bar-section.taco .bar-layout { direction: ltr; }
+  .bar-grid { max-width: 100%; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  .lb-arrow.left { left: -8px; }
+  .lb-arrow.right { right: -8px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Tacos & Burgers</a>
+  <a href="index.html" class="nav-back">← Înapoi la site</a>
+  <a href="tel:0770235943" class="nav-cta">Sună acum</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Catering & Events</div>
+    <h1>Bars for your <em>events</em></h1>
+    <p>Transformăm orice eveniment într-o experiență culinară de neuitat — cu baruri tematice pregătite cu pasiune și atenție la detalii.</p>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="cta-strip-text">
+    <h2>Taco Bar pentru <em>evenimentul tău</em></h2>
+    <p>Nuntă, botez, aniversare sau corporate — suntem acolo cu energie mexicană!</p>
+  </div>
+  <a href="tel:0770235943" class="call-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.38 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72A16 16 0 0 0 16 16.73l.88-.88a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Sună acum — 0770 235 943
+  </a>
+</div>
+
+<!-- TACO BAR -->
+<section class="bar-section taco" id="taco-bar">
+  <div class="bar-inner">
+    <div class="bar-layout">
+      <div class="bar-header reveal-right">
+        <div class="section-tag">Taco Bar</div>
+        <h2>Taco <em>Bar</em></h2>
+        <p>Energia și savoarea mexicană la evenimentul tău! Mini burgeri, tacos, nachos, tequila shots și bere mexicană — un bar tematic care devine centrul petrecerii și lasă amintiri de neuitat.</p>
+        <p style="margin-top:1rem;color:rgba(255,255,255,0.4)">Ideal pentru nunți moderne, petreceri corporate sau orice eveniment cu vibe!</p>
+      </div>
+      <div class="bar-grid reveal-left">
+        <div class="bar-grid-item" data-bar="taco" data-idx="0">
+          <img src="1775152492232_image.png" alt="Taco Bar setup 1">
+          <div class="bar-grid-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div>
+        </div>
+        <div class="bar-grid-item" data-bar="taco" data-idx="1">
+          <img src="1775152504708_image.png" alt="Taco Bar shots tequila">
+          <div class="bar-grid-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div>
+        </div>
+        <div class="bar-grid-item" data-bar="taco" data-idx="2">
+          <img src="1775152512391_image.png" alt="Taco Bar platou 3">
+          <div class="bar-grid-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div>
+        </div>
+        <div class="bar-grid-item" data-bar="taco" data-idx="3">
+          <img src="1775152546614_image.png" alt="Taco Bar nachos">
+          <div class="bar-grid-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lb-inner">
+    <button class="lb-close-btn" id="lb-close">✕</button>
+    <div class="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+    <div class="lb-caption-row">
+      <span class="lb-caption" id="lb-caption"></span>
+      <span class="lb-counter" id="lb-counter"></span>
+    </div>
+    <button class="lb-arrow left" id="lb-prev">&#8592;</button>
+    <button class="lb-arrow right" id="lb-next">&#8594;</button>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/40770235943" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<footer>
+  <div class="footer-logo">Tacos & Burgers</div>
+</footer>
+
+<script>
+// PROGRESS BAR
+const pb = document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';});
+
+// REVEAL
+const ro = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
+
+// LIGHTBOX
+const tacoPics = [
+  {src:'1775152492232_image.png', caption:'Taco Bar — setup complet'},
+  {src:'1775152504708_image.png', caption:'Taco Bar — tequila shots & bere mexicană'},
+  {src:'1775152512391_image.png', caption:'Taco Bar — platou mexican'},
+  {src:'1775152546614_image.png', caption:'Taco Bar — nachos & tacos'},
+];
+
+let curBar = tacoPics, curIdx = 0;
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCap = document.getElementById('lb-caption');
+const lbCtr = document.getElementById('lb-counter');
+
+function openLb(bar, idx) {
+  curBar = tacoPics;
+  curIdx = idx;
+  renderLb();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+function renderLb() {
+  lbImg.style.opacity = '0';
+  setTimeout(()=>{
+    lbImg.src = curBar[curIdx].src;
+    lbCap.textContent = curBar[curIdx].caption;
+    lbCtr.textContent = (curIdx+1) + ' / ' + curBar.length;
+    lbImg.style.opacity = '1';
+  },150);
+}
+function goLb(dir) { curIdx=(curIdx+dir+curBar.length)%curBar.length; renderLb(); }
+
+document.querySelectorAll('.bar-grid-item').forEach(el=>{
+  el.addEventListener('click',()=>openLb(el.dataset.bar, +el.dataset.idx));
+});
+document.getElementById('lb-close').addEventListener('click',closeLb);
+document.getElementById('lb-prev').addEventListener('click',()=>goLb(-1));
+document.getElementById('lb-next').addEventListener('click',()=>goLb(1));
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')goLb(-1);
+  if(e.key==='ArrowRight')goLb(1);
+});
+let tx=0;
+lb.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+lb.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)goLb(d>0?1:-1);});
+</script>
+</body>
+</html>
