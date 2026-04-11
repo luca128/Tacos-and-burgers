@@ -1,50 +1,20 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="favicon-180.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tacos & Burgers Galați | Restaurant Mexican Street Food</title>
 <meta name="description" content="Tacos & Burgers Galați — restaurant street food mexican cu tacos, burritos, quesadillas, nachos și burgeri proaspeți. Str. Regiment 11 Siret Nr.2D, Galați. Comandă acum: 0770 235 943.">
-<meta name="keywords" content="tacos galati, burgeri galati, restaurant mexican galati, street food galati, burritos galati, quesadillas galati, nachos galati, livrare mancare galati, tacos and burgers">
+<meta name="keywords" content="tacos galati, burgeri galati, restaurant mexican galati, street food galati">
 <meta name="robots" content="index, follow">
-<meta name="author" content="Tacos & Burgers Galați">
-<link rel="canonical" href="https://tacos-and-burgers.vercel.app/">
-
-<!-- Open Graph (Facebook, WhatsApp, Instagram) -->
+<link rel="canonical" href="https://tacos-and-burgers.com/">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="favicon-180.png">
 <meta property="og:title" content="Tacos & Burgers Galați | Restaurant Mexican Street Food">
-<meta property="og:description" content="Tacos, burritos, quesadillas, nachos și burgeri proaspeți pregătiți zilnic cu pasiune. Str. Regiment 11 Siret Nr.2D, Galați.">
-<meta property="og:image" content="https://tacos-and-burgers.vercel.app/1775139668011_image.png">
-<meta property="og:url" content="https://tacos-and-burgers.vercel.app/">
+<meta property="og:description" content="Tacos, burritos, quesadillas, nachos și burgeri proaspeți pregătiți zilnic cu pasiune.">
+<meta property="og:image" content="https://tacos-and-burgers.com/1775139668011_image.png">
+<meta property="og:url" content="https://tacos-and-burgers.com/">
 <meta property="og:type" content="restaurant">
-<meta property="og:locale" content="ro_RO">
-
-<!-- Schema.org — spune Google că ești restaurant local -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Tacos & Burgers Galați",
-  "image": "https://tacos-and-burgers.vercel.app/1775139668011_image.png",
-  "url": "https://tacos-and-burgers.vercel.app/",
-  "telephone": "+40770235943",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Str. Regiment 11 Siret Nr.2D",
-    "addressLocality": "Galați",
-    "postalCode": "800368",
-    "addressCountry": "RO"
-  },
-  "servesCuisine": ["Mexican", "American", "Street Food"],
-  "priceRange": "$$",
-  "openingHours": ["Mo-Fr 12:00-21:00", "Sa-Su 12:00-22:00"],
-  "sameAs": [
-    "https://www.facebook.com/TacosandBurgersGalati",
-    "https://www.instagram.com/tacos_burgers_galati"
-  ]
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -205,16 +175,16 @@ nav.scrolled { background: rgba(18,8,0,0.96); backdrop-filter: blur(16px); borde
 .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
 .day-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 8px; text-align: center; transition: all 0.3s cubic-bezier(.22,1,.36,1); }
 .day-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
-.day-card.today { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
-.day-card.special { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
-.day-card.special:hover { background: rgba(255,255,255,0.08); }
+.day-card.today { background: rgba(200,34,10,0.2); border-color: rgba(200,34,10,0.5); }
+.day-card.special { background: rgba(245,200,66,0.08); border-color: rgba(245,200,66,0.3); }
+.day-card.special:hover { background: rgba(245,200,66,0.15); }
 .day-name { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); margin-bottom: 8px; font-weight: 500; }
-.day-card.today .day-name { color: rgba(255,255,255,0.4); }
-.day-card.special .day-name { color: rgba(255,255,255,0.4); }
+.day-card.today .day-name { color: rgba(255,255,255,0.7); }
+.day-card.special .day-name { color: var(--gold-dark); }
 .day-hours { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); line-height: 1.4; }
-.day-card.today .day-hours { color: rgba(255,255,255,0.7); }
-.day-card.special .day-hours { color: rgba(255,255,255,0.7); }
-.day-badge { display: none; }
+.day-card.today .day-hours { color: #fff; }
+.day-card.special .day-hours { color: var(--gold); }
+.day-badge { display: inline-block; margin-top: 6px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 3px; background: rgba(245,200,66,0.15); color: var(--gold); font-weight: 500; }
 
 /* REVIEWS CAROUSEL */
 .reviews-section { background: var(--cream); padding: 6rem 5rem; position: relative; overflow: hidden; }
@@ -370,6 +340,18 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
 @media (min-width: 901px) and (max-width: 1100px) {
   .review-card { width: calc(50% - 10px); }
 }
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: rgba(18,8,0,0.98); backdrop-filter: blur(20px); z-index: 199; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.mobile-menu.open { opacity: 1; pointer-events: all; display: flex; }
+.mobile-menu a { font-size: 22px; color: rgba(255,255,255,0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 300; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .mobile-cta { background: var(--red); color: #fff !important; padding: 14px 36px; border-radius: 8px; font-size: 18px !important; font-weight: 500 !important; margin-top: 1rem; }
+@media (max-width: 900px) { .hamburger { display: flex; } .nav-links { display: none !important; } }
 </style>
 </head>
 <body>
@@ -379,7 +361,7 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">Tacos & Burgers</a>
-  <span id="status-badge" style="display:none"><span id="status-dot"></span><span id="status-text">...</span></span>
+  
   <ul class="nav-links">
     <li><a href="meniu.html">Meniu</a></li>
     <li><a href="#despre">Despre noi</a></li>
@@ -391,7 +373,20 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
     <li><a href="bars.html">Bars</a></li>
     <li><a href="tel:0770235943" class="nav-cta phone-pulse">Sună acum</a></li>
   </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="meniu.html" onclick="closeMob()">Meniu</a>
+  <a href="#despre" onclick="closeMob()">Despre noi</a>
+  <a href="#poveste" onclick="closeMob()">Povestea noastră</a>
+  <a href="#program" onclick="closeMob()">Program</a>
+  <a href="#recenzii" onclick="closeMob()">Recenzii</a>
+  <a href="#galerie" onclick="closeMob()">Galerie</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="bars.html" onclick="closeMob()">Bars</a>
+  <a href="tel:0770235943" class="mobile-cta">Sună acum</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -410,7 +405,6 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
     <p class="hero-desc">Tacos, burritos, quesadillas, nachos și burgeri proaspeți — pregătiți zilnic cu pasiune. Opțiuni vegan incluse.</p>
     <div class="hero-actions">
       <a href="#despre" class="btn btn-outline">Află mai mult</a>
-      <a href="meniu.html" class="btn btn-outline">Meniu</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
@@ -522,10 +516,10 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
       <div class="day-card reveal reveal-delay-1"><div class="day-name">Lun</div><div class="day-hours">12:00<br>21:00</div></div>
       <div class="day-card reveal reveal-delay-2"><div class="day-name">Mar</div><div class="day-hours">12:00<br>21:00</div></div>
       <div class="day-card reveal reveal-delay-3"><div class="day-name">Mie</div><div class="day-hours">12:00<br>21:00</div></div>
-      <div class="day-card reveal reveal-delay-4"><div class="day-name">Joi</div><div class="day-hours">12:00<br>21:00</div></div>
-      <div class="day-card reveal reveal-delay-3"><div class="day-name">Vin</div><div class="day-hours">12:00<br>22:00</div></div>
-      <div class="day-card reveal reveal-delay-2"><div class="day-name">Sâm</div><div class="day-hours">12:00<br>22:00</div></div>
-      <div class="day-card reveal reveal-delay-1"><div class="day-name">Dum</div><div class="day-hours">12:00<br>22:00</div></div>
+      <div class="day-card today reveal reveal-delay-4"><div class="day-name">Joi ●</div><div class="day-hours">12:00<br>21:00</div></div>
+      <div class="day-card reveal reveal-delay-3"><div class="day-name">Vin</div><div class="day-hours">12:00<br>21:00</div></div>
+      <div class="day-card special reveal reveal-delay-2"><div class="day-name">Sâm</div><div class="day-hours">Non-stop</div><span class="day-badge">24h</span></div>
+      <div class="day-card reveal reveal-delay-1"><div class="day-name">Dum</div><div class="day-hours">14:00<br>21:00</div></div>
     </div>
   </div>
 </section>
@@ -748,13 +742,6 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
   </div>
 </footer>
 
-<div style="background:var(--dark);padding:12px 5rem;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(255,255,255,0.04);">
-  <span style="font-size:12px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;">Designed by Luca</span>
-  <a href="https://www.instagram.com/luca_vlc_/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-  </a>
-</div>
-
 <script>
 // PROGRESS BAR
 const progressBar = document.getElementById('progress-bar');
@@ -799,64 +786,7 @@ const co = new IntersectionObserver(entries => {
 document.querySelectorAll('.stat-number').forEach(el => co.observe(el));
 
 // STATUS LIVE
-(function() {
-  // 0=Dum, 1=Lun, 2=Mar, 3=Mie, 4=Joi, 5=Vin, 6=Sam
-  const schedule = {
-    0: { open: 14, close: 21 },
-    1: { open: 12, close: 21 },
-    2: { open: 12, close: 21 },
-    3: { open: 12, close: 21 },
-    4: { open: 12, close: 21 },
-    5: { open: 12, close: 21 },
-    6: { open: 0,  close: 24 }, // non-stop
-  };
-  const dayNames = ['duminică','luni','marți','miercuri','joi','vineri','sâmbătă'];
 
-  function nextOpenInfo(now) {
-    const day = now.getDay();
-    for (let d = 1; d <= 7; d++) {
-      const nextDay = (day + d) % 7;
-      const s = schedule[nextDay];
-      if (s) {
-        // non-stop day — skip, always open
-        if (s.close === 24) continue;
-        const name = dayNames[nextDay];
-        const hour = s.open + ':00';
-        return d === 1 ? 'Deschidem mâine la ' + hour : 'Deschidem ' + name + ' la ' + hour;
-      }
-    }
-    return 'Verifică programul';
-  }
-
-  function updateStatus() {
-    const badge = document.getElementById('status-badge');
-    const text = document.getElementById('status-text');
-    if (!badge || !text) return;
-
-    const now = new Date();
-    const day = now.getDay();
-    const hour = now.getHours() + now.getMinutes() / 60;
-    const s = schedule[day];
-
-    let isOpen = false;
-    if (s) {
-      if (s.close === 24) isOpen = true; // non-stop
-      else isOpen = hour >= s.open && hour < s.close;
-    }
-
-    if (isOpen) {
-      badge.className = 'open';
-      const closeHour = s.close === 24 ? 'non-stop' : s.close + ':00';
-      text.textContent = s.close === 24 ? 'Deschiși · Non-stop' : 'Deschiși acum · până la ' + closeHour;
-    } else {
-      badge.className = 'closed';
-      text.textContent = nextOpenInfo(now);
-    }
-  }
-
-  updateStatus();
-  setInterval(updateStatus, 60000);
-})();
 
 (function() {
   const photos = [
@@ -977,5 +907,21 @@ document.querySelectorAll('.stat-number').forEach(el => co.observe(el));
   startAuto();
 })();
 </script>
-</body>
-</html>
+
+<div style="background:#0A0400;padding:14px 5rem;border-top:1px solid rgba(255,255,255,0.04);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:11px;color:rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;line-height:1.6;">
+      <strong style="color:rgba(255,255,255,0.35)">CHEFSOLUTIONSLTD SRL</strong> · CUI 48897831 · J2023001521178 · Str. Petru Rareș 12, Bl. B7, Sc. 1, Et. 4, Ap. 10, Galați<br>
+      tacosandburgers2025@gmail.com
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a href="https://anpc.ro" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">ANPC</a>
+      <a href="https://sol.anpc.ro" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">SOL</a>
+      <a href="politica-confidentialitate.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Politică de Confidențialitate</a>
+    </div>
+  </div>
+</div>
+<div style="background:#0A0400;padding:10px 5rem;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(255,255,255,0.04);">
+  <span style="font-size:12px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;">Designed by Luca</span>
+  <a href="https://www.instagram.com/luca_vlc_/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 
