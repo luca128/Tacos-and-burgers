@@ -1,0 +1,9 @@
+{
+  "name": "tacos-and-burgers",
+  "version": "1.0.0",
+  "description": "Tacos & Burgers Galați - Restaurant Mexican Street Food",
+  "private": true,
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}
