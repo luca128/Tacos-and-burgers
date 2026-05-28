@@ -414,37 +414,27 @@ footer { background: var(--dark2); padding: 2.5rem 5rem; display: flex; align-it
       <span class="line">mexican & american</span>
     </h1>
     <p class="hero-desc">Tacos, burritos, quesadillas, nachos și burgeri proaspeți — pregătiți zilnic cu pasiune. Opțiuni vegan incluse.</p>
-    <div class="hero-actions">
-      <a href="#despre" class="btn btn-outline">Află mai mult</a>
+    <div class="hero-actions" style="flex-direction:column;align-items:flex-start;gap:12px;">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="tel:0770235943" class="btn btn-red phone-pulse">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.38 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72A16 16 0 0 0 16 16.73l.88-.88a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Comandă acum
+        </a>
+        <a href="meniu.html" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+          Meniu
+        </a>
+      </div>
+      <a href="bars.html" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;background:rgba(245,200,66,0.12);color:var(--gold);border:1px solid rgba(245,200,66,0.4);transition:all 0.25s;font-family:'DM Sans',sans-serif;" onmouseover="this.style.background='rgba(245,200,66,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(245,200,66,0.12)';this.style.transform='translateY(0)'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 0-2 2h-3"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
+        Bars for your events
+      </a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
 </section>
 
-<!-- DELIVERY -->
-<section class="delivery-section">
-  <div class="delivery-section-inner">
-    <div class="delivery-section-text reveal">
-      <div class="section-tag" style="color:var(--gold)"><span style="background:var(--gold);display:inline-block;width:24px;height:2px"></span> Livrare acasă</div>
-      <h2>Comandă <em>acum</em></h2>
-      <p>Livrăm prin cele mai populare aplicații de food delivery. Alege platforma preferată!</p>
-    </div>
-    <div class="delivery-cta reveal reveal-delay-1">
-      <a href="tel:0770235943" class="delivery-call-btn">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.38 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72A16 16 0 0 0 16 16.73l.88-.88a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Comandă acum
-      </a>
-      <a href="meniu.html" class="delivery-menu-btn">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
-        Meniu
-      </a>
-      <a href="bars.html" class="delivery-bars-btn">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 0-2 2h-3"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
-        Bars for your events
-      </a>
-    </div>
-  </div>
-</section>
+
 
 <!-- ABOUT -->
 <section class="about" id="despre">
@@ -928,17 +918,14 @@ document.querySelectorAll('.stat-number').forEach(el => co.observe(el));
       tacosandburgers2025@gmail.com
     </div>
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-      <a href="https://anpc.ro" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">ANPC</a>
-      <a href="https://ec.europa.eu/consumers/odr" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">SOL</a>
+      <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener"><img src="https://wpfitness.eu/wp-content/uploads/2022/10/anpc-sal.png" alt="ANPC - Soluționarea Alternativă a Litigiilor" style="height:40px;width:auto;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"></a>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener"><img src="https://wpfitness.eu/wp-content/uploads/2022/10/anpc-sol.png" alt="Soluționarea Online a Litigiilor" style="height:40px;width:auto;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"></a>
       <a href="politica-confidentialitate.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Politică de Confidențialitate</a>
     </div>
   </div>
 </div>
 <div style="background:#0A0400;padding:10px 5rem;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(255,255,255,0.04);">
-  <span style="font-size:12px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;">Designed by Luca</span>
-  <a href="https://www.instagram.com/velichi.luca/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-  </a>
+  <a href="https://www.velichi-luca.agency" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Designed by <span style="color:var(--gold)">Luca</span> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
 </div>
 <script>
 function closeMob(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('open');document.body.style.overflow='';}
